@@ -22,7 +22,7 @@ const MessageContainer = () => {
         <NoChatSelected/>
       ) : (
         <>
-          <div className="bg-slate-500 px-4 py-2 mb-2 bg-opacity-40">
+          <div className="bg-slate-900 px-4 py-2 mb-2 bg-opacity-40">
             <span className="text-gray-900 font-bold">{selectedConversation.fullName}</span>
           </div>
           <Messages></Messages>

@@ -16,10 +16,10 @@ const Login = () => {
   return (
     <div className="flex flex-col item-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 round shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
-        <h1 className="text-3x1 font-semibold text-center text-gray-300">
+        <h1 className="text-3x1 font-semibold text-center text-gray-500">
           {" "}
 
-          <span className="text-red-100"> MyChat</span>
+          <span className="text-gray-700"> MyChat</span>
         </h1>
         <form onSubmit={handleSubmit}>
           <div>
@@ -29,7 +29,7 @@ const Login = () => {
             <input
               type="text"
               placeholder="Enter Username"
-              className="w-full input input-bordered h-10"
+              className="w-full input input-bordered h-10 bg-gray-300"
               onChange={(e) => setUsername(e.target.value)}
             />
           </div>
@@ -41,7 +41,7 @@ const Login = () => {
             <input
               type="password"
               placeholder="Enter Password"
-              className="w-full input input-bordered h-10"
+              className="w-full input input-bordered h-10 bg-gray-300"
               onChange={(e) => setPassword(e.target.value)}
 
             />

@@ -30,7 +30,7 @@ const SearchInput = () => {
     <form onSubmit={handleSubmit} className='flex items-center' >
         <input type="text" placeholder='Search User..' className='input input-bordered rounded-full'
         onChange={(e) => setSearchValue(e.target.value)} value={SearchValue}/>
-        <button type='submit' className='btn btn-circle bg-sky-500 text-white'>
+        <button type='submit' className='btn btn-circle bg-gray-500 text-white'>
             <IoSearchSharp className='w-6 h-6 outline-none'/>
         </button>
     </form>

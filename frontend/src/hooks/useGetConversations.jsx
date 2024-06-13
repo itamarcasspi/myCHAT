@@ -1,10 +1,14 @@
 import React, { useEffect, useState } from "react";
 import toast from "react-hot-toast";
+import { useAuthContext } from "../../context/AuthContext";
+import { useSocketContext } from "../../context/SocketContext";
 
 
 const useGetConversations= () => {
   const [loading, setLoading] = useState(false);
   const [conversations, setConversations] = useState([]);
+  const {authUser} = useAuthContext();
+  const {onlineUsers} = useSocketContext();
 
   useEffect(() => {
     const getConversations = async () => {
@@ -25,7 +29,7 @@ const useGetConversations= () => {
     };
 
     getConversations();
-  }, []);
+  }, [onlineUsers]);
 
   return { loading, conversations };
 };
