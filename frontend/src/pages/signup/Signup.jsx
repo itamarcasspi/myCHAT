@@ -1,6 +1,31 @@
-import React from "react";
+import React, { useState } from "react";
+import { Link } from "react-router-dom";
+import GenderDropdown from "./GenderDropdown";
+import useSignup from "../../hooks/useSignup";
 
 const Signup = () => {
+
+  const [inputs,setInputs] = useState({
+    fullName:'',
+    username:'',
+    password:'',
+    confirmPassword:'',
+    gender:''
+  });
+
+  const {loading, signup} = useSignup();
+
+  const handleSubmit = async (e) => {
+    e.preventDefault();
+    console.log(inputs)
+    await signup(inputs)
+
+  }
+
+  const handleGenderChoice = (gender) => {
+    setInputs({...inputs,gender})
+  }
+
   return (
     <div className="flex flex-col item-center justify-center min-w-96 mx-auto">
       <div className="w-full p-6 round shadow-md bg-gray-400 bg-clip-padding backdrop-filter backdrop-blur-lg bg-opacity-0">
@@ -9,19 +34,9 @@ const Signup = () => {
           <span className="text-red-400"> MyChat</span>
           <span> Signup</span>
         </h1>
-        <form>
-          <div class="flex flex-col items-center">
-            <label className="label p-2">
-              <span className="text-base label-text"></span>
-            </label>
-            <input
-              type="text"
-              placeholder="Enter your Username"
-              className="w-150 input input-bordered h-10"
-            />
-          </div>
+        <form onSubmit={handleSubmit}>
 
-          <div class="flex flex-col items-center">
+        <div className="flex flex-col items-center">
             <label className="label p-2">
               <span className="text-base label-text flex justify-center"></span>
             </label>
@@ -29,10 +44,27 @@ const Signup = () => {
               type="text"
               placeholder="Enter your full name "
               className="w-150 input input-bordered h-10 item-center"
+              value={inputs.fullName}
+              onChange={(e)=> setInputs({...inputs,fullName:e.target.value})}
             />
           </div>
 
-          <div class="flex flex-col items-center">
+
+          <div className="flex flex-col items-center">
+            <label className="label p-2">
+              <span className="text-base label-text"></span>
+            </label>
+            <input
+              type="text"
+              placeholder="Enter your Username"
+              className="w-150 input input-bordered h-10"
+              value={inputs.username}
+              onChange={(e)=> setInputs({...inputs,username:e.target.value})}
+            />
+          </div>
+
+
+          <div className="flex flex-col items-center">
             <label className="label p-2">
               <span className="text-base label-text"></span>
             </label>
@@ -40,10 +72,12 @@ const Signup = () => {
               type="password"
               placeholder="Enter Password"
               className="w-150 input input-bordered h-10"
+              value={inputs.password}
+              onChange={(e)=> setInputs({...inputs,password:e.target.value})}
             />
           </div>
 
-          <div class="flex flex-col items-center">
+          <div className="flex flex-col items-center">
             <label className="label p-2">
               <span className="text-base label-text"></span>
             </label>
@@ -51,34 +85,22 @@ const Signup = () => {
               type="password"
               placeholder="Enter password again"
               className="w-150 input input-bordered h-10"
+              value={inputs.confirmPassword}
+              onChange={(e)=> setInputs({...inputs,confirmPassword:e.target.value})}
             />
           </div>
 
-          <div className="dropdown w-100 py-2 flex flex-col items-center">
-            <div tabIndex={0} role="button" className="btn m-1">
-              Choose gender
-            </div>
-            <ul
-              tabIndex={0}
-              className="dropdown-content z-[1] menu p-2 shadow bg-base-100 rounded-box w-52 h-100"
-            >
-              <li>
-                <a>Male</a>
-              </li>
-              <li>
-                <a>Female</a>
-              </li>
-            </ul>
-          </div>
+          <GenderDropdown handleSelect={handleGenderChoice}/>
 
 
           <div>
-            <button className="btn btn-block btn-active btn-ghost">
-              Sign up
+            <button className="btn btn-block btn-active btn-ghost"
+            disabled={loading}>
+              {loading ? <span className="loading loading-spinner"></span> : "Signup"}
             </button>
           </div>
           
-          <a className="link link-hover ">Already have an account?</a>
+          <Link to={"/login"} className="link link-hover ">Already have an account?</Link>
 
         </form>
       </div>

@@ -8,7 +8,6 @@ const Home = () => {
     backdrop-filter backdrop-blur-lg bg-opacity-0'>
       <Sidebar></Sidebar>
       <MessageContainer></MessageContainer> 
-
     </div>
   )
 }

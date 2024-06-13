@@ -4,7 +4,7 @@ import generateTokenSetCookie from "../utils/generateJWT.js";
 
 export const signup = async (req, res) => {
   try {
-    const { fullname, username, password, confirmPassword, gender } = req.body;
+    const { fullName, username, password, confirmPassword, gender } = req.body;
     if (password != confirmPassword) {
       return res.status(400).json({ error: "Passwords don't match" });
     }
@@ -19,24 +19,23 @@ export const signup = async (req, res) => {
 
     const salt = await bcrypt.genSalt(10);
     const hashedPassword = await bcrypt.hash(password, salt);
-
-    const profilePic = `https://ui-avatars.com/api/?name=${fullname}`;
+    const profilePic = `https://ui-avatars.com/api/?name=${fullName}`;
 
     const newUser = new User({
-      fullname,
+      fullName,
       username,
       password: hashedPassword,
       gender,
       profilePic,
     });
-
     if (newUser) {
       generateTokenSetCookie(newUser._id, res);
       await newUser.save();
+      console.log("new user object made.",newUser);
 
       res.status(201).json({
         _id: newUser._id,
-        fullname: newUser.fullname,
+        fullName: newUser.fullName,
         username: newUser.username,
         profilePic: newUser.profilePic,
       });
@@ -47,7 +46,7 @@ export const signup = async (req, res) => {
     res.status(500).json({
       error: error.message,
     });
-    console.log("Error in signup controller ", error.message);
+    console.log("Error in auth controller ", error.message);
   }
   console.log("signup user");
 };
@@ -65,9 +64,10 @@ export const login = async (req, res) => {
 
     res.status(200).json({
       _id: user._id,
-      fullname: user.fullname,
+      fullName: user.fullName,
       username: user.username,
       gender: user.gender,
+      profilePic: user.profilePic
     });
   } catch (error) {
     res.status(500).json({
