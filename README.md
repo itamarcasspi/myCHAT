@@ -8,6 +8,7 @@ A real-time chat application built using the MERN (MongoDB, Express, React, Node
 - [Real-Time Chat Application](#real-time-chat-application)
   - [Table of Contents](#table-of-contents)
   - [Features](#features)
+  - [Link](#link)
   - [Application use cases](#application-use-cases)
   - [API Endpoints](#api-endpoints)
     - [1. Authentication](#1-authentication)
@@ -23,6 +24,11 @@ A real-time chat application built using the MERN (MongoDB, Express, React, Node
 - One-to-one chat conversations
 - Simple and responsive design
 - Efficient data management design using MongoDB
+
+## Link
+  [Click here](https://mychat-25rm.onrender.com) to access the web application hosted in Render.com.
+
+  """ Disclaimer- As the application traffic is non-existent, requests made to the server may be slowed by up to 50 seconds
 
 ## Application use cases
 
